@@ -1,0 +1,28 @@
+</div>
+<h2> Search Results for <%=type%> Authors on "<%= body[2]%>" </h2>
+<% if(SearchResults.length == 0) {  %>
+    <p>No Search Results</p>
+<% } %>
+
+<ul>
+    <% if(SearchResults.length > 0) { %>
+        <p>Search Yielded <%=SearchResults.length%> Results</p>
+        <%  for (var i = 0; i< SearchResults.length; i++) {  %>
+            <% console.log('this is ' + i + ' ' + SearchResults[0].title)  %>
+            
+            <li class = "bookSuggestion">
+                <h5>
+                    <a = class = "single" href ="/authors/<%=SearchResults[i].AUTHOR_ID%>" ><%=  SearchResults[i].FIRST_NAME + ' ' + SearchResults[i].LAST_NAME  %> </a>
+                </h5>
+            
+            </li>
+            
+            
+        <%  }  %>
+    <% } %>
+    </ul>
+
+
+<% console.log('this is ' + SearchResults[1])  %>
+    
+</div>

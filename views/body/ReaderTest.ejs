@@ -1,0 +1,71 @@
+  <div class="input-group">
+
+    <form action="/readers/search" method="POST" class="form-inline my-2 my-lg-0">
+      <div class="input-group mb-3" style="margin: 16px 0">
+          <div class="input-group-prepend" >
+            <label class="input-group-text" for="f1">Search By: </label>
+          </div>
+          <select class="custom-select" id="fl" name="fl">
+            <option selected disabled>Choose Type</option>
+            <option value="1">All Readers</option>
+            <option value="2">Followed</option>
+            <option value="3">Not Followed</option>
+          </select>
+        </div>
+      <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search for Readers" aria-label="Search">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
+
+<div class="imae"></div>
+
+  <div class="container">
+    <h5>Readers with similar interests in books:</h5>
+    <%if(readers.length > 0){ %>
+      <ul>
+      <%  for (var i = 0; i< RLen; i++) {  %>
+          
+        <li class="readerSuggestion">
+                <%=readers[i].FIRST_NAME + ' ' + readers[i].LAST_NAME%> <a = class="userSuggestion" href = "/readers/<%=readers[i].READER_ID%>"> <i> <%=" (" + readers[i].USERNAME + ") "   %> </i></a>
+                <ul>Common books liked (<%=readers[i].C %>):
+                  <%  for (var j = 0; j< books[i].length; j++) {  %>
+                    <li>
+                      <a = class = "single" href = "/books/<%=books[i][j].BOOK_ID%>" ><%=  books[i][j].TITLE  %> </a>
+                    </li>
+
+                    <%  }  %>
+                
+                  </ul>
+        </li>
+      
+        
+        <%  }  %>
+    <%  }  %>
+    <%if(readers.length == 0){ %>
+      <i><p>***Please add some more books to bookshelf to receive suggestions***</p></i>
+      <%  }  %>
+      </ul>
+
+
+  </div>
+
+  <div class="container">
+    <h5>Readers with common Authors followed:</h5>
+    <%if(readers1.length > 0){ %>
+      <ul>
+      <%  for (var i = 0; i< Math.min(5,readers1.length); i++) {  %>
+          
+        <li class="readerSuggestion">
+                <%=readers1[i].FIRST_NAME + ' ' + readers1[i].LAST_NAME%> <a = class = "single" href = "/readers/<%=readers1[i].READER_ID%>" > <i> <%=" (" + readers1[i].USERNAME + ") "   %> </i></a>
+        </li>
+      
+        
+        <%  }  %>
+    <%  }  %>
+    <%if(readers1.length == 0){ %>
+      <i><p>***Please follow some more authors to receive suggestions***</p></i>
+      <%  }  %>
+      </ul>
+
+
+  </div>

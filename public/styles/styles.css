@@ -1,0 +1,168 @@
+*{
+  font-size: 100%;
+  font-family: Arial;
+
+}
+
+.myHeader {
+  margin : 1px 0;
+}
+
+.heading {
+    font-size: 25px;
+    margin-right: 25px;
+  }
+  
+  .fa {
+    font-size: 25px;
+  }
+  
+  .checked {
+    color: orange;
+  }
+  
+  /* Three column layout */
+  .side {
+    float: left;
+    width: 15%;
+    margin-top: 10px;
+  }
+  
+  .middle {
+    float: left;
+    width: 70%;
+    margin-top: 10px;
+  }
+  
+  /* Place text to the right */
+  .right {
+    text-align: right;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* The bar container */
+  .bar-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+  }
+  
+  /* Individual bars */
+  .bar-5 {height: 18px; background-color: #04AA6D;}
+  .bar-4 {height: 18px; background-color: #2196F3;}
+  .bar-3 {height: 18px; background-color: #00bcd4;}
+  .bar-2 {height: 18px; background-color: #ff9800;}
+  .bar-1 {height: 18px; background-color: #f44336;}
+
+  .wallpost-create form input{
+    color: #4b4b4b;
+    margin: 15px 0;
+    padding: 2px 10px;
+    font-size: 18px;
+    border: 2px solid rgb(5, 5, 5);
+    border-radius: 5px;
+  }
+
+  .wallpost-create form button {
+      margin: 15px 0;
+      padding: 5px 12px;
+  }
+
+  .genreSuggestion {
+    display: block;
+    margin: 30px 0;
+    padding-left: 20px;
+    border-left: 5px solid rgb(83, 168, 238);
+  }
+
+  .authorSuggestion{
+    display: block;
+    margin: 30px 0;
+    padding-left: 20px;
+    border-left: 5px solid rgba(220, 20, 60, 0.692);
+  }
+.authorSuggestion li {
+  display: block;
+      margin: 5px 0;
+      padding-left: 20px;
+      border-left: 5px solid rgba(202, 80, 105, 0.692);
+}
+
+  .bookSuggestion {
+      display: block;
+      margin: 30px 0;
+      padding-left: 20px;
+      border-left: 5px solid rgb(83, 168, 238);
+  }
+
+  .bookSuggestion :hover {
+      color: palevioletred;
+      text-decoration: none;
+  }
+
+  .dashBoard {
+    display: block;
+    margin: 15px 0;
+    padding-left: 20px;
+    border-left: 4px solid rgb(245, 126, 126);
+}
+
+
+
+.dashBoard :hover {
+  color: palevioletred;
+  text-decoration: none;
+}
+
+  .readerSuggestion {
+    display: block;
+    margin: 40px 0;
+    padding-left: 30px;
+    border-left: 6px solid rgba(220, 20, 60, 0.596);
+  }
+
+.readerSuggestion li :hover {
+    color:#d87093;
+    text-decoration: none;
+}
+
+.readerSuggestion li {
+  display: block;
+    margin: 5px 0;
+    padding-left: 30px;
+    border-left: 6px solid rgba(202, 80, 105, 0.692);
+}
+
+.userSuggestion i:hover {
+    color: palevioletred;
+    text-decoration: none;
+}
+
+  .reviewSummary {
+      padding : 20px 20px;
+  }
+  
+  .review {
+    display: block;
+    margin: 20px 0;
+    padding-left: 10px;
+    border-left: 6px solid rgb(160, 196, 243);
+  }
+
+  /* Responsive layout - make the columns stack on top of each other instead of next to each other */
+  @media (max-width: 400px) {
+    .side, .middle {
+      width: 100%;
+    }
+    /* Hide the right column on small screens */
+    .right {
+      display: none;
+    }
+  }

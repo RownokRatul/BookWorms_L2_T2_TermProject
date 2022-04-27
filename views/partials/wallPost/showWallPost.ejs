@@ -1,0 +1,66 @@
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <h3><small class="text-muted">Timeline: </small></h3>
+      <div id="wallpostSection">
+        <ul>
+          <% for(var i = 0; i < wallposts.length; i++) { %>
+            <li class="review">
+                <div class="card" style="width: 38rem;">
+  <div class="card-body">
+      <h5 class="card-title"><a href="/readers/<%= wallposts[i].POSTED_BY_ID %>"><%= wallposts[i].USERNAME %></a></h5>
+    <h6 class="card-subtitle mb-2 text-muted">Shared <%= wallposts[i].TIMEDIF %> ago</h6>
+      <p class="card-text"><%= wallposts[i].POST_BODY%></p>
+    <p class="card-text"><%= wallposts[i].TEXT_BODY%></p>
+    <% if(wallposts[i].REACTION_STATUS) { %>
+      <button class="btn btn-primary btn-sm" id="unlike/<%= wallposts[i].WALLPOST_ID %>"><span class="material-icons">thumb_up</span></button>
+    <% } else { %>
+      <button class="btn btn-secondary btn-sm" id="like/<%= wallposts[i].WALLPOST_ID %>"><span class="material-icons">thumb_up</span></button>
+    <% } %>
+    <i><%= wallposts[i].LIKE_COUNT %> people liked</i>
+  </div>
+</div>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <div class="col-4">
+      <h3><small class="text-muted">Suggested Books: </small></h3>
+      <ul >
+          <% for(var i=0; i < suggestedBook.length ; i++) { %>
+              <li class="bookSuggestion">
+                  <a = class = "single" href = "/books/<%=suggestedBook[i].BOOK_ID%>" ><%=  suggestedBook[i].TITLE  %> </a>
+                  <br>
+                  <small class="text-muted"> <%= suggestedBook[i].AUTHOR_NAME %> </small>
+              </li>
+          <% } %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+    <script>
+
+        const likeDiv = document.getElementById('wallpostSection');
+        likeDiv.querySelectorAll(['button']).forEach((button) => {
+          const requestPath = `/wallpost/${button.getAttribute('id')}`;
+          button.onclick = (() => { 
+            console.log(requestPath);
+                fetch(requestPath, {
+                    method: 'POST'
+                })
+                .then((res) => res.json())
+                .then((data) => {
+                    window.location.href = data.redirect;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            });
+        });
+
+    </script>

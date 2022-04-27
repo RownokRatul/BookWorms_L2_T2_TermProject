@@ -1,0 +1,210 @@
+
+<div class="container">
+    <h4>Name: <%=reader.FIRST_NAME + ' ' + reader.LAST_NAME%></h4>
+    <h5><p>Username: <%=reader.USERNAME%></h5>
+    <hr style="border:1px solid #f1f1f18c">
+    </div>
+
+    
+
+
+    <div class="container">
+    <div class = "row">
+    <div class = "col-sm-12">
+        <h3><small class="text-muted">Recent Bookshelf Activites:  </small></h3>
+        <ul>
+                <%  for (var i = 0; i< bLen; i++) {  %>
+                    
+                    <li class="dashBoard">
+                            Added 
+                            <a = class = "single" href = "/books/<%=books[i].BOOK_ID%>" ><%=  books[i].TITLE  %> </a>
+                            to 
+                            <%if(books[i].STATUS == 1){%> 
+                                <b>"Has Read"</b>
+                            <%}%>
+                            <%if(books[i].STATUS == 2){%> 
+                                <b>"Is Reading"</b>
+                            <%}%>
+                            <%if(books[i].STATUS == 3){%> 
+                                <b>"Will Read"</b>
+                            <%}%>
+                            <i><%=books[i].TD%></i> ago
+                            <%if(books[i].TD < 1){%> 
+                                <%if(Math.round(books[i].TD * 24) == 0){%>
+                                    <i>less than an hour</i> ago
+                                <%}%>
+                                <%if(Math.round(books[i].TD * 24) > 0){%>
+                                    <i><%= Math.round(books[i].TD * 24)%> hours</i> ago
+                                <%}%>
+
+                            <%}%>
+                            
+                            <%if(books[i].TD > 30){%> 
+                                <i><%= Math.round(books[i].TD / 30)%> month(s)</i> ago
+                            <%}%>
+                            <%if(books[i].TD > 1 && books[i].TD < 30){%> 
+                                <i> <%= Math.round(books[i].TD)%> days</i> ago
+                            <%}%>
+
+                    </li>
+                    
+                    
+                <%  }  %>
+        </ul>
+    
+    <hr style="border:1px solid #f1f1f1d0">
+
+        <h3><small class="text-muted">Recently Started Following These Authors: </small></h3>
+            <ul>
+                    <%  for (var i = 0; i< AfLen; i++) {  %>
+                        
+                        <li class="dashBoard">
+                                Followed 
+                                <a = class = "single" href = "/authors/<%=Afollows[i].AUTHOR_ID%>" ><%=  Afollows[i].FIRST_NAME + ' ' + Afollows[i].LAST_NAME   %> </a>
+                                <i><%=Afollows[i].TD%></i> ago
+    
+                        </li>
+                        
+                        
+                    <%  }  %>
+            </ul>
+        
+            <hr style="border:1px solid #f1f1f1d0">
+
+            <h3><small class="text-muted">Recently Started Following These Readers: </small></h3>
+            <ul>
+                    <%  for (var i = 0; i< RfLen; i++) {  %>
+                        
+                        <li class="dashBoard">
+                                Followed 
+                                <a = class = "single" href = "/readers/<%=Rfollows[i].READER_ID%>" ><%=  Rfollows[i].FIRST_NAME + ' ' + Rfollows[i].LAST_NAME   %> </a>
+                                <i><%=Rfollows[i].TD%></i> ago
+    
+                        </li>
+                        
+                        
+                    <%  }  %>
+            </ul>
+        
+        
+
+            <hr style="border:1px solid #f1f1f1d0">
+
+        
+            <h3><small class="text-muted">Recent Followers: </small></h3>
+                <ul>
+                        <%  for (var i = 0; i< fbLen; i++) {  %>
+                            
+                            <li class="dashBoard">
+                                    <a = class = "single" href = "/readers/<%=followers[i].READER_ID%>" ><%=  followers[i].FIRST_NAME + ' ' + followers[i].LAST_NAME   %> </a>
+                                    started following you
+                                    <i><%=followers[i].TD%></i> ago
+        
+                            </li>
+                            
+                            
+                        <%  }  %>
+                </ul>
+                <hr style="border:1px solid #f1f1f1d0">
+            </div>
+
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-6" id="wallpostSection">
+                        <h3><small class="text-muted">Recent Wallpost: </small></h3>
+                            <% if(wallpost.length) { %>
+                        <ul>
+                            <% for(var i=0; i < wallpost.length; i++) { %>
+                            <li class="review">
+                                <div class="card" style="width: 30rem;">
+                                    <div class="card-body">
+                                      <h6 class="card-subtitle mb-2 text-muted">Posted <%= wallpost[i].TIMEDIF%> ago</h6>
+                                      <p class="card-text"><%= wallpost[i].POST_BODY%></p>
+                                      <h6 class="card-subtitle mb-2 text-muted"><%= wallpost[i].LIKE_COUNT%> People Reacted</h6>
+                                      <button class="btn btn-outline-dark btn-sm px-3" id="<%= wallpost[i].WALLPOST_ID %>"><span class="material-icons">delete</span></a>
+                                    </div>
+                                  </div>
+                                
+                            </li>
+                            <% } %>
+                        </ul>
+                        <% } else { %>
+                            <p><b>You Have No Wallpost To Show!</b></p>
+                        <% } %>
+                    </div>
+
+                    <div class="col-6" id="ownReviewSection">
+                        <h3><small class="text-muted">Recent Reviews: </small></h3>
+                        <% if(reviewLen) { %>
+                        <ul>
+                            <% for(var i=0; i < reviewlen; i++) { %>
+                                <li class="review">
+                                    
+                                    <div class="card" style="width: 30rem;">
+                                        <div class="card-body">
+                                        <h5 class="card-title">Book: <a href="/books/<%= review[i].BOOK_ID%>"><%= review[i].TITLE%></a></h5>
+                                          <h6 class="card-subtitle mb-2 text-muted">Shared <%= review[i].TIMEDIF%> ago</h6>
+                                          <p class="card-text"><%= review[i].TEXT_BODY%></p>
+                                          <h6 class="card-subtitle mb-2 text-muted">Rating: <%=review[i].RATING%></h6>
+                                          <button class="btn btn-outline-dark btn-sm px-3" id="<%= review[i].REVIEW_ID %>-dashboard"><span class="material-icons">delete</span></a>
+                                        </div>
+                                      </div>
+                                </li>
+                            <% } %>
+                        </ul>
+                        <% } else { %>
+                            <p><b>You Have No Reviews To Show!</b></p>
+                        <% } %>
+                        
+                    </div>
+                </div>
+            </div>
+                
+                
+            </div>
+</div>
+
+<script>
+    const ownReview = document.getElementById('ownReviewSection');
+    ownReview.querySelectorAll(['button']).forEach( (button) => {
+        const requestPath = `/review/${button.getAttribute('id')}`; 
+        console.log(requestPath);
+        button.onclick = (() => { 
+            //console.log(requestPath);
+            if(confirm("You sure want to delete this review?")) {
+                fetch(requestPath, {
+                    method: 'DELETE'
+                })
+                .then((res) => res.json())
+                .then((data) => {
+                    window.location.href = data.redirect;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            }
+        });
+    });
+
+    const wallpost = document.getElementById('wallpostSection');
+    wallpost.querySelectorAll(['button']).forEach((button) => {
+        const requestPath = `/wallpost/${button.getAttribute('id')}`;
+        button.onclick = () => {
+            //console.log(requestPath);
+            if(confirm("You sure want to delete this wallpost?")) {
+                fetch(requestPath, {
+                    method: 'DELETE'
+                })
+                .then((res) => res.json())
+                .then((data) => {
+                    window.location.href = data.redirect;
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            }
+        };
+    });
+
+</script>

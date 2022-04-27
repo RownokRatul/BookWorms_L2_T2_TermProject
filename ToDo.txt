@@ -1,0 +1,59 @@
+
++++ -> Needs Beautification
+*** -> Target
+____ -> Done
+### -> Concept issues
+
+
+Questions:
+1. PL/SQL Good, not mandatory
+2. Admin Side? NOt necessary
+3. Connection Pool OK? OK
+4. How to incorporate genre YOur wish
+
+
+*****How to use pictures (eg User pic, author pic, book cover etc)  *****
+*****Cleaner UI *****
+****Main reader page (Search by username) {EASY, JUST COPY from author/books} *****
+###Same page many buttons??
+
+*************Specific Reader Tab
+	Wallpost [---LATER---]
+		Comment [---LATER---]
+
+
++++Specific Author Tab+++++
+	Add Common FOllowers [Later]
+
+
+
++++ *********Main Book Page (search by Publisher, Genre-->> DROPDOWN??) **********
++++Specific Book Tab 
+	********Review*********
+	
+
+Tanjeem's To-DO:
+Reader Prefer Genre (Add on profile page)
+Genre Page
+Fill Up pages
+
+Review and Wallpost into DB
+
+
+
+Low Priority:Comment, React
+Optional: Quotes
+
+DONES:
+Authentication (_____DONE____)
++++User Profile Edit on Home Page [_______DONE_______] {*********NO EMAIL + BORN EDIT********}
++++Main Author Page (search by name)  {______DONE________}
++++Main Book Page (search by Title) [________DONE_________]
++++Specific Author Tab Basics [________DONE__________]+++
++++Specific Book Tab Basics [________DONE__________]+++
+Add option for FOllow/Unfollow on author page  [________DONE__________]
+DBCONNECTION SINGLETON {_______________Not needed, since Pools used________}
+Add Author Written books[_______DONE_________]
+
+####Dangers:
+Date Checking during registration (and editing profile, if added later)

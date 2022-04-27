@@ -1,0 +1,104 @@
+    
+    <h3><small class="text-muted">Share Your Journey: </small></h3>
+        <% if(ownReview.length) { %>
+            <ul id="ownReviewSection">
+            <% for(var i=0; i < ownReview.length; i++) { %>
+                <li class="review">
+                    <div class="card" style="width: 30rem;">
+                        <div class="card-body">
+                          <h6 class="card-subtitle mb-2 text-muted">Shared: <%= ownReview[i].TIMEDIF%> ago</h6>
+                            <% for(var j = 0;j < ownReview[i].RATING ; j++) { %>
+                                <span class="fa fa-star checked"></span>
+                            <% } %>
+                            <% for(var k = ownReview[i].RATING; k < 5; k++) { %>
+                                <span class="fa fa-star"></span>
+                            <% } %>
+                          <p class="card-text"><%= ownReview[i].TEXT_BODY%></p>
+                          <button class="btn btn-outline-dark btn-sm px-3" id="<%= ownReview[i].REVIEW_ID %> - <%= ownReview[i].BOOK_ID %>"><span class="material-icons">delete</span></button>
+                        </div>
+                      </div>
+                </li>
+            <% } %>
+            </ul>
+        <% } else { %>
+            <div class="wallpost-create">
+                <form action="/books/review/<%= bookID %>" method="POST" class="review-form">
+                    <input type="text" name="reviewBody" placeholder="The journey starts.." required>
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rating" value="1" />
+                        <label for="star1" title="text">1 star</label>
+                        <input type="radio" id="star4" name="rating" value="2" />
+                        <label for="star2" title="text">2 star</label>
+                        <input type="radio" id="star3" name="rating" value="3" />
+                        <label for="star3" title="text">3 star</label>
+                        <input type="radio" id="star2" name="rating" value="4" />
+                        <label for="star4" title="text">4 star</label>
+                        <input type="radio" id="star1" name="rating" value="5" checked/>
+                        <label for="star5" title="text">5 star</label>
+                    </div>
+                    <button class="btn btn-outline-dark btn-sm px-3" type="submit">Post Review</button>
+                </form>
+            </div>
+        <% } %>
+    
+
+        <h3><small class="text-muted">Others' Journey: </small></h3>
+        <ul>
+        <div class="review-show-pane" id="otherReviewSection">
+                <% if(!othersReview.length) { %>
+
+                    <h6><b>Seems Nobody Has Shared Their Journey Yet!</b></h6>
+
+                <% } else {%>
+                    <ul>
+                        <% for(var i=0; i < othersReview.length; i++) { %>
+                            <li class="review">
+                                <div class="card" style="width: 30rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title"><a href="/readers/<%= othersReview[i].READER_ID %>"><%= othersReview[i].USERNAME %></a></h5>
+                                      <h6 class="card-subtitle mb-2 text-muted">Shared <%= othersReview[i].TIMEDIF%> ago</h6>
+                                        <% for(var j = 0;j < othersReview[i].RATING ; j++) { %>
+                                            <span class="fa fa-star checked"></span>
+                                        <% } %>
+                                        <% for(var k = othersReview[i].RATING; k < 5; k++) { %>
+                                            <span class="fa fa-star"></span>
+                                        <% } %>
+                                      <p class="card-text"><%= othersReview[i].TEXT_BODY%></p>
+                                    </div>
+                                  </div>
+                            </li>
+                        <% } %>
+                    </ul>
+                <% } %>
+                
+            </ul>
+        </div>
+    </div>
+    </div>
+
+<script>
+    const ownReview = document.getElementById('ownReviewSection');
+    if(ownReview) {
+        ownReview.querySelectorAll(['button']).forEach( (button) => {
+            const requestPath = `/review/${button.getAttribute('id')}`; 
+            console.log(requestPath);
+            button.onclick = (() => { 
+                console.log(requestPath);
+                if(confirm("You sure want to delete this review?")) {
+                    fetch(requestPath, {
+                        method: 'DELETE'
+                    })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        window.location.href = data.redirect;
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
+                }
+            });
+        });
+    }
+
+</script>
+  
