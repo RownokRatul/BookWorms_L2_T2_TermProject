@@ -23,8 +23,8 @@ An online readers' community where users can customize their "BookShelf" with bo
 
 
 ## Authors
-- [Tanjeem Azwad Zaman](https://github.com/Tanjeem29)
 - [MD Rownok Zahan Ratul](https://github.com/RownokRatul)
+- [Tanjeem Azwad Zaman](https://github.com/Tanjeem29)
 
 ## Supervisor
 - [Tahmid Hasan](https://tahmid04.github.io/)
